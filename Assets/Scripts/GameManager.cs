@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     }
 
     public string GetBestScore(){
-        return "Best Score :"+ bestPlayer +" : "+highestScore;
+        return "Best Score : "+ bestPlayer +" : "+highestScore;
     }
 
 }
