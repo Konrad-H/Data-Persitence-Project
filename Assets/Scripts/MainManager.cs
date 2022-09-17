@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
+    [SerializeField] private TMP_Text bestScore;
+
     
     // Start is called before the first frame update
     void Start()
     {
+        UpdateBestScore();
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -62,6 +66,11 @@ public class MainManager : MonoBehaviour
         }
     }
 
+    void UpdateBestScore(){
+        
+        bestScore.text = GameManager.Instance.GetBestScore();
+    }
+
     void AddPoint(int point)
     {
         m_Points += point;
@@ -72,5 +81,6 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        if (GameManager.Instance.CheckNewScore(m_Points)){UpdateBestScore();};
     }
 }
